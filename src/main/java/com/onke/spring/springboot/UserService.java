@@ -1,7 +1,7 @@
 package com.onke.spring.springboot;
 
 public interface UserService {
-    void addUser(String name, String surname);
-    void remove(long Id);
-    void getUser(long Id);
+    String addUser(long id, String name, String surname);
+    void remove(long id);
+    void getUser(long id);
 }
