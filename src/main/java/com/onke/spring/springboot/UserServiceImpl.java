@@ -7,14 +7,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-@Component
-@ComponentScan(basePackages = "com.onke.spring.springboot")
+@Service
 public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LogManager.getLogger(UserService.class.getName());
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(UserServiceImpl.class);
-    UserServiceImpl userService = ctx.getBean("userServiceImpl", UserServiceImpl.class);
     // dependency injection
     FakeRepoInterface fakeRepo;
+    @Autowired
     public UserServiceImpl(FakeRepoInterface fakeRepo) {
         this.fakeRepo = fakeRepo;
     }
