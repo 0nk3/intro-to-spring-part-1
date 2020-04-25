@@ -5,10 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static java.lang.String.*;
+
 @Service
 public class UserServiceImpl implements UserService {
-    private static final Logger LOGGER = LogManager.getLogger(UserService.class.getName());
-    // dependency injection
+    private static final Logger LOGGER = LogManager.getLogger(UserServiceImpl.class.getName());
+    // constructor dependency injection
     FakeRepoInterface fakeRepo;
     @Autowired
     public UserServiceImpl(FakeRepoInterface fakeRepo) {
@@ -17,22 +19,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String addUser(long id, String name, String surname) {
-        userService.addUser(1, "Linus","Torvalds");
-        LOGGER.info(name + " Entered");
+        fakeRepo.insertUser(1, name, surname);
+        LOGGER.info(format("%s Entered", name));
         return name;
     }
 
     @Override
     public void remove(long id) {
-        userService.remove(1);
-        LOGGER.info(getUser(id) + " removed");
+        fakeRepo.deleteUser(id);
+        LOGGER.info(format("%s removed", getUser(id) ));
 
     }
 
     @Override
     public long getUser(long id) {
         LOGGER.info("hello " + fakeRepo.findById(id).getName());
-        userService.getUser(1);
+        fakeRepo.findById(id);
         return id;
     }
 }
