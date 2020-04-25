@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static java.lang.String.*;
+import static java.lang.String.format;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,17 +23,14 @@ public class UserServiceImpl implements UserService {
         LOGGER.info(format("%s Entered", name));
         return name;
     }
-
     @Override
     public void remove(long id) {
         fakeRepo.deleteUser(id);
         LOGGER.info(format("%s removed", getUser(id) ));
-
     }
-
     @Override
     public long getUser(long id) {
-        LOGGER.info("hello " + fakeRepo.findById(id).getName());
+        LOGGER.info("Hello " + fakeRepo.findById(id).getName());
         fakeRepo.findById(id);
         return id;
     }
